@@ -95,6 +95,10 @@ module Fae
       Fae.netlify[:api_base].present?
     end
 
+    def mapped_enum(enum)
+      ([['---', nil]] + enum.map { |k, v| [k.titleize.capitalize, k] })
+    end
+
     private
 
     def nav_path_current?(path)

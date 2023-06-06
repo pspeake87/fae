@@ -1,0 +1,35 @@
+<section class="container g-py-50">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-lg-6">
+      <div class="g-brd-around g-brd-gray-light-v4 rounded g-py-40 g-px-30">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name),
+                     html: { method: :put, class: 'form-horizontal' }) do |f| %>
+          <%= f.hidden_field :reset_password_token %>
+
+          <div class="mb-4">
+            <%= f.label :password, 'New Password', class: 'g-color-gray-dark-v2 g-font-weight-600 g-font-size-13' %>
+            <%= f.password_field :password, required: true, autofocus: true, class: 'form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15', placeholder: 'Password' %>
+          </div>
+
+          <div class="g-mb-35">
+
+            <div class="row justify-content-between">
+              <div class="col">
+                <%= f.label :password_confirmation, 'Confirm Password', class: 'g-color-gray-dark-v2 g-font-weight-600 g-font-size-13' %>
+              </div>
+            </div>
+            <%= f.password_field :password_confirmation, required: true, autofocus: true, class: 'form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3', placeholder: 'Password' %>
+
+            <div class="row justify-content-between">
+              <div class="col-12 align-self-center text-center">
+                <button class="btn u-btn-primary g-font-weight-600 g-font-size-12 text-uppercase g-px-25 g-py-8"
+                        type="submit">Change My Password
+                </button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

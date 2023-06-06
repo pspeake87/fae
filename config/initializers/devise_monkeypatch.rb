@@ -5,7 +5,7 @@
 Devise::FailureApp.class_eval do
   def scope_url
     context = send(Devise.available_router_name)
-    route = :"new_#{scope}_session_url"
+    route = :"new_#{scope}_session_path"
     context.send(route, {})
   end
 end

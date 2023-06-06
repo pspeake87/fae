@@ -7,9 +7,16 @@ module Fae
     # Include default devise modules. Others available are:
     # :registerable, :confirmable, :timeoutable and :omniauthable
     devise :database_authenticatable,
-           :recoverable, :rememberable, :trackable, :lockable
+           :recoverable, :rememberable, :trackable,
+           authentication_keys: [:login]
 
     belongs_to :role
+
+    attr_writer :login
+
+    def login
+      @login || email
+    end
 
     validates :first_name, presence: true
     validates :email,
@@ -29,6 +36,17 @@ module Fae
 
     scope :public_users, -> { joins(:role).where.not('fae_roles.name = ?', 'super admin') }
     scope :live_super_admins, -> { joins(:role).where(active: true, fae_roles: { name: 'super admin' }) }
+
+    def self.find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      login = conditions.delete(:login)
+      if login
+        where(conditions.to_h)
+          .find_by(['lower(email) = :value', { value: login.downcase }])
+      elsif conditions.key?(:email)
+        find_by(conditions.to_h)
+      end
+    end
 
     def super_admin?
       role.name == 'super admin'

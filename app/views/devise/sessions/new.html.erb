@@ -1,0 +1,44 @@
+<section class="container g-py-50">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-lg-6">
+      <div class="g-brd-around g-brd-gray-light-v4 rounded g-py-40 g-px-30">
+        <!-- Form -->
+        <%= form_for(resource, as: resource_name, url: '/admin/login', html: { class: 'form-horizontal' }) do |f| %>
+
+          <div class="mb-4">
+            <%= f.label :login, 'Email', class: 'g-color-gray-dark-v2 g-font-weight-600 g-font-size-13' %>
+            <%= f.email_field :login, required: true, autofocus: true, class: 'form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15', placeholder: 'Email Address' %>
+          </div>
+
+          <div class="g-mb-35">
+            <div class="row justify-content-between">
+              <div class="col align-self-center">
+                <%= f.label :password, class: 'g-color-gray-dark-v2 g-font-weight-600 g-font-size-13' %>
+              </div>
+              <div class="col align-self-center text-right">
+                <%= link_to 'Forgot password?', new_customer_password_path, class: 'd-inline-block g-font-size-12 mb-2' %>
+              </div>
+            </div>
+            <%= f.password_field :password, required: true, autofocus: true, class: 'form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3', placeholder: 'Password' %>
+            <div class="row justify-content-between">
+              <div class="col-8 align-self-center">
+                <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25 mb-0">
+                  <%= f.check_box :remember_me, class: 'g-hidden-xs-up g-pos-abs g-top-0 g-left-0' %>
+                  <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
+                    <i class="fa" data-check-icon="&#xf00c"></i>
+                  </div>
+                  Keep me signed in
+                </label>
+              </div>
+              <div class="col-4 align-self-center text-right">
+                <button class="btn u-btn-primary g-font-weight-600 g-font-size-12 text-uppercase g-px-25 g-py-8"
+                        type="submit">Sign In</button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <!-- End Form -->
+      </div>
+    </div>
+  </div>
+</section>
